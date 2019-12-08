@@ -16,7 +16,7 @@ public class HiveApplication {
 
     @Bean
     hiveGrpc.hiveBlockingStub getStub(){
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost",8081).usePlaintext().build();
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("118.31.76.206",8081).usePlaintext().build();
         return hiveGrpc.newBlockingStub(channel);
     }
 

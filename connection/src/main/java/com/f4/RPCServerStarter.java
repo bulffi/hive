@@ -20,7 +20,7 @@ public class RPCServerStarter {
 
     public void startServer() throws ClassNotFoundException, SQLException, IOException, InterruptedException {
         ServerBuilder<?> serverBuilder = ServerBuilder.forPort(8081);
-        String connectionURL = "jdbc:hive2://118.31.76.206:10000";
+        String connectionURL = "jdbc:hive2://localhost:10000";
         String username = "hive";
         String passwd = "Zzj6p@saturn@lym";
         String driverName = "org.apache.hive.jdbc.HiveDriver";
