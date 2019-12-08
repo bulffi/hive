@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.f4.proto.skr";
+option java_outer_classname = "helloWorldProto";
+option objc_class_prefix = "HLW";
+
+service hive{
+    rpc getAccount(Nothing) returns (AccountInfo){}
+    rpc updateAccountInfo(AccountInfo) returns (Nothing){}
+
+    rpc getCoupon(Nothing) returns (CouponInfo){}
+    rpc setCouponInfo(CouponInfo) returns (Nothing) {}
+
+    rpc getGood(Nothing) returns (GoodInfo){}
+    rpc setGoodInfo(GoodInfo) returns (Nothing){}
+
+    rpc getOrder(Nothing) returns(OrderInfo){}
+    rpc setOrderInfo(OrderInfo) returns (Nothing) {}
+
+    rpc getReceive(Nothing) returns (ReceiveInfo){}
+    rpc setReceiveInfo(ReceiveInfo) returns (Nothing) {}
+
+    rpc getWare(Nothing) returns (WareInfo) {}
+    rpc setWareInfo(WareInfo) returns (Nothing) {}
+}
+message Nothing{}
+
+message Account{
+    string account_id = 1;
+    string password = 2;
+    string nickname = 3;
+    int32 gender = 4;
+    string description = 5;
+}
+message AccountInfo{
+    repeated Account accountList = 1;
+}
+
+message Coupon{
+    string coupon_id = 1;
+    double discount = 2;
+    int32 inventory = 3;
+}
+message CouponInfo{
+    repeated Coupon couponList = 1;
+}
+
+message Good{
+    string good_name = 1;
+    double delivery_fee = 2;
+    string description = 3;
+}
+message GoodInfo{
+    repeated Good goodList = 1;
+}
+
+message Order{
+    string order_id = 1;
+    string buyer_account_id = 2;
+    string good_name = 3;
+    string size = 4;
+    string produce_place = 5;
+    int32  amount = 6;
+    int32 year = 7;
+    int32 month = 8;
+    int32 day = 9;
+    double price = 10;
+    string receive_address = 11;
+}
+message OrderInfo{
+    repeated Order orderList = 1;
+}
+
+message Receive{
+    string receiver_account_id = 1;
+    string receive_info_id = 2;
+    string phone_number = 3;
+    string address = 4;
+}
+message ReceiveInfo{
+    repeated Receive receiveList = 1;
+}
+
+message Ware{
+    string good_name = 1;
+    string ware_id = 2;
+    string size = 3;
+    string produce_place = 4;
+    double price = 5;
+    int32 inventory = 6;
+}
+message WareInfo{
+    repeated Ware wareList = 1;
+}
