@@ -38,6 +38,7 @@ public class WareController {
             ware.setSize(w.getSize());
             ware.setPrice(w.getPrice());
             ware.setInventory(w.getInventory());
+            ware.setProduce_place(w.getProducePlace());
             wareList.add(ware);
         }
         return wareList;
