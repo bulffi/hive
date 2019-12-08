@@ -21,7 +21,7 @@
     <description>hive for cloud computing</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <hive.version>3.1.2</hive.version>
     </properties>
 

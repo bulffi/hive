@@ -51,9 +51,16 @@ public class CouponController {
     @PostMapping("/coupon/update")
     public void updateAllTheCouponInfo(@RequestBody CouponList couponList){
         // do sth with the coupon list;
-
-
-
+        CouponInfo.Builder builder = CouponInfo.newBuilder();
+        for (Coupon c:
+            couponList.getList() ) {
+            builder.addCouponList(com.f4.proto.skr.Coupon.newBuilder()
+                    .setCouponId(c.getCoupon_id())
+                    .setDiscount(c.getDiscount())
+                    .setInventory(c.getInventory())
+                    .build());
+        }
+        Nothing nothing = hub.setCouponInfo(builder.build());
         // if you want a reply message, just modify the return value to object
         // and return the message as an object
     }

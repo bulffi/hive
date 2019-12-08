@@ -53,8 +53,23 @@ public class AccountController {
     @PostMapping("/account/update")
     public void updateAllAccount(@RequestBody AccountList accountList){
         // do sth with the account list;
-
-
+        AccountInfo.Builder builder = AccountInfo.newBuilder();
+        for (Account a :
+                accountList.getList()) {
+            com.f4.proto.skr.Account account = com.f4.proto.skr.Account.newBuilder()
+                    .setAccountId(a.getAccount_id())
+                    .setPassword(a.getPassword())
+                    .setNickname(a.getNickname())
+                    .setGender(a.getGender())
+                    .setDescription(a.getDescription())
+                    .build();
+            builder.addAccountList(account);
+        }
+        try {
+            Nothing nothing = hub.updateAccountInfo(builder.build());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         // if you want a reply message, just modify the return value to object
         // and return the message as an object
