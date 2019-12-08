@@ -45,6 +45,7 @@ public class AccountController {
             account.setGender(a.getGender());
             account.setNickname(a.getNickname());
             account.setPassword(a.getPassword());
+            account.setGender(a.getGender());
             accounts.add(account);
         }
         return accounts;
