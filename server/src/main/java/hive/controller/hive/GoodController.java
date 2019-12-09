@@ -1,4 +1,4 @@
-package hive.controller;
+package hive.controller.hive;
 
 
 import com.f4.proto.skr.GoodInfo;

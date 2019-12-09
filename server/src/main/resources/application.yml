@@ -1,0 +1,7 @@
+hiveConnection:
+  ip: 118.31.76.206
+  port: 8081
+
+gDFSConnection:
+  ip:
+  port:

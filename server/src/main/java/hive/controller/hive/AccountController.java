@@ -1,4 +1,4 @@
-package hive.controller;
+package hive.controller.hive;
 
 
 import hive.entity.Account;
@@ -25,7 +25,7 @@ public class AccountController {
     @Autowired
     hiveGrpc.hiveBlockingStub hub;
     @GetMapping("/account/info")
-    public Object getAllTheAccount() throws ClassNotFoundException, SQLException {
+    public Object getAllTheAccount() {
         List<Account> list = new ArrayList<>();
         AccountInfo accountList = null;
         while (accountList == null){
