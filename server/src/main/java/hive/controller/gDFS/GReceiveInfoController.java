@@ -1,6 +1,6 @@
 package hive.controller.gDFS;
 
-import com.f4.proto.omg.*;
+import com.f4.proto.nn.*;
 import hive.entity.ReceiveInfo;
 import hive.entity.wrapper.ReceiveInfoList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ import java.util.List;
  * @create: 2019/12/09
  **/
 @RestController
-public class ReceiveInfoController {
+public class GReceiveInfoController {
     @Autowired
-    gDFSGrpc.gDFSBlockingStub stub;
+    MasterGrpc.MasterBlockingStub stub;
 
     @GetMapping("/g/receiveInfo/info")
     public Object getAllTheReceiveInfo(){
@@ -39,6 +39,7 @@ public class ReceiveInfoController {
                 receiveInfo.setAddress(att[3]);
                 receiveInfos.add(receiveInfo);
             }catch (Exception e){
+                System.out.println(line);
                 e.printStackTrace();
             }
         }

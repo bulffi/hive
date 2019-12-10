@@ -3,5 +3,5 @@ hiveConnection:
   port: 8081
 
 gDFSConnection:
-  ip:
-  port:
+  ip: 192.168.43.142
+  port: 8980

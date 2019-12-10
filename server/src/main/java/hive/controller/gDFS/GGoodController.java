@@ -1,6 +1,6 @@
 package hive.controller.gDFS;
 
-import com.f4.proto.omg.*;
+import com.f4.proto.nn.*;
 import hive.entity.Good;
 import hive.entity.wrapper.GoodList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ import java.util.List;
  * @create: 2019/12/09
  **/
 @RestController
-public class GoodController {
+public class GGoodController {
     @Autowired
-    gDFSGrpc.gDFSBlockingStub stub;
+    MasterGrpc.MasterBlockingStub stub;
 
     @GetMapping("/g/good/info")
     public Object getAllTheGoodInfo(){
@@ -35,14 +35,14 @@ public class GoodController {
                 Good good = new Good();
                 good.setGood_name(att[0]);
                 good.setDescription(att[1]);
-                good.setDelivery_fee(Integer.parseInt(att[2]));
+                good.setDelivery_fee(Double.parseDouble(att[2]));
                 goods.add(good);
             }catch (Exception e){
                 e.printStackTrace();
             }
 
         }
-        return lines;
+        return goods;
     }
 
     @PostMapping("/g/good/update")

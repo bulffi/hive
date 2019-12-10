@@ -1,6 +1,6 @@
 package hive.controller.gDFS;
 
-import com.f4.proto.omg.*;
+import com.f4.proto.nn.*;
 import hive.entity.Order;
 import hive.entity.wrapper.OrderList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
  * @author: Zijian Zhang
  * @create: 2019/12/09
  **/
-@Controller
-public class OrderController {
+@RestController
+public class GOrderController {
     @Autowired
-    gDFSGrpc.gDFSBlockingStub stub;
+    MasterGrpc.MasterBlockingStub stub;
 
     @GetMapping("/g/order/info")
     public Object getAllTheOrderInfo(){

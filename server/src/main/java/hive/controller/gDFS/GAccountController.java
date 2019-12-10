@@ -1,5 +1,6 @@
 package hive.controller.gDFS;
 
+import com.f4.proto.nn.*;
 import hive.entity.Account;
 import hive.entity.wrapper.AccountList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.f4.proto.omg.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -22,9 +22,9 @@ import java.util.List;
  * @create: 2019/12/09
  **/
 @RestController
-public class AccountController {
+public class GAccountController {
     @Autowired
-    gDFSGrpc.gDFSBlockingStub stub;
+    MasterGrpc.MasterBlockingStub stub;
     @GetMapping("/g/account/info")
     public Object getAllTheAccount() {
         TableContent content = stub.readTable(TableName.newBuilder().setName("account").build());

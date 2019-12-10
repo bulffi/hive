@@ -1,7 +1,7 @@
 package hive;
 
+import com.f4.proto.nn.MasterGrpc;
 import com.f4.proto.skr.hiveGrpc;
-import com.f4.proto.omg.gDFSGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,9 +31,9 @@ public class HiveApplication {
     }
 
     @Bean
-    gDFSGrpc.gDFSBlockingStub getGDFSStub(){
+    MasterGrpc.MasterBlockingStub getGDFSStub(){
         ManagedChannel channel = ManagedChannelBuilder.forAddress(gDFSConnectionIP,gDFSConnectionPort).usePlaintext().build();
-        return  gDFSGrpc.newBlockingStub(channel);
+        return  MasterGrpc.newBlockingStub(channel);
     }
 
 }

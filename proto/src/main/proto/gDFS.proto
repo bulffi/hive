@@ -1,13 +1,76 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.f4.proto.omg";
-option java_outer_classname = "helloWorldProto";
-option objc_class_prefix = "HLW";
+option java_package = "com.f4.proto.nn";
+option java_outer_classname = "NameNodeProto";
+option objc_class_prefix = "NN";
 
-service gDFS{
+package nn;
+
+import "common.proto";
+
+service Master{
+    rpc register(RegisterRequest) returns (RegisterResponse) {}
+
+    // data node 之间互相写 写好了会告诉你{我是谁，我写了什么文件，写的逻辑块号码，写的物理块号码} 以便你了解哪里有什么
+    rpc reportDataWriteStatus(WriteReportRequest) returns (WriteReportReply) {}
+    rpc reportDataDeleteStatus(DeleteReportRequest) returns (DeleteReportReply) {}
+
+    rpc heartBeat(stream HeartBeatInfo) returns (NullReply) {}
+
     rpc readTable(TableName) returns (TableContent){}
     rpc updateTable(Table) returns (Status) {}
+}
+
+message HeartBeatInfo{
+    PeerInfo reporter = 1;
+}
+
+message NullReply{}
+
+message WriteReportRequest{
+    // data node 我的IP
+    //string ip = 1;
+    PeerInfo reporter = 1;
+    // 写的什么文件的哪一块
+    string fileName = 2;
+    int64 logicalBlockID = 3;
+    // 我写在第几块的
+    int64 physicalBlockID = 4;
+}
+
+message WriteReportReply{
+    int32 status = 1;
+    // 0 error
+    // 1 OK
+}
+
+message DeleteReportRequest{
+    // 我的 IP
+    PeerInfo reporter = 1;
+    //repeated int64 physicalBlockID = 2;
+    repeated intWrapper physicalBlockIDWrapper = 2;
+}
+
+message DeleteReportReply{
+    int32 status = 1;
+    // 0 error
+    // 1 OK
+}
+
+message intWrapper{
+    int64 physicalBlockID=1;
+}
+
+
+message RegisterResponse{
+    bool status = 1;
+    repeated PeerInfo peers = 2;
+}
+
+
+message RegisterRequest{
+    PeerInfo peer = 1;
 }
 
 message Status{
